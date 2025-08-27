@@ -246,6 +246,14 @@ body {
     will-change: transform, opacity;
   }
 
+  .footer-particle {
+    will-change: transform;
+  }
+
+  .footer-glow {
+    will-change: transform, opacity;
+  }
+
   /* Performance Optimizations */
   @media (prefers-reduced-motion: reduce) {
     .floating-particle,
@@ -254,7 +262,8 @@ body {
     .about-particle,
     .features-particle,
     .contact-particle,
-    .story-particle {
+    .story-particle,
+    .footer-particle {
       animation: none !important;
     }
     
@@ -266,7 +275,8 @@ body {
     .about-gradient,
     .features-glow,
     .contact-glow,
-    .story-glow {
+    .story-glow,
+    .footer-glow {
       animation: none !important;
     }
   }

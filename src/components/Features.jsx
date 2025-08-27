@@ -127,48 +127,92 @@ const Features = () => {
   });
 
   return (
-    <section className="relative bg-black pb-52 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-black via-gray-900/50 to-black pb-52 overflow-hidden">
       {/* Enhanced Background */}
       <div className="absolute inset-0">
-        {/* Floating Particles */}
-        {Array.from({ length: 25 }).map((_, i) => (
+        {/* Primary Floating Particles */}
+        {Array.from({ length: 30 }).map((_, i) => (
           <div
-            key={i}
-            className="features-particle absolute w-1.5 h-1.5 bg-blue-400/30 rounded-full"
+            key={`primary-${i}`}
+            className="features-particle absolute rounded-full"
             style={{
+              width: `${Math.random() * 2.5 + 1}px`,
+              height: `${Math.random() * 2.5 + 1}px`,
+              backgroundColor: i % 4 === 0 ? 'rgba(59, 130, 246, 0.4)' :
+                              i % 4 === 1 ? 'rgba(147, 51, 234, 0.4)' :
+                              i % 4 === 2 ? 'rgba(236, 72, 153, 0.4)' :
+                              'rgba(34, 197, 94, 0.3)',
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 12}s`,
+              boxShadow: `0 0 ${Math.random() * 4 + 2}px currentColor`,
             }}
           />
         ))}
         
-        {/* Ambient Glows */}
-        {Array.from({ length: 8 }).map((_, i) => (
+        {/* Larger Ambient Glows */}
+        {Array.from({ length: 10 }).map((_, i) => (
           <div
-            key={i}
-            className="features-glow absolute w-96 h-96 rounded-full"
+            key={`glow-${i}`}
+            className="features-glow absolute rounded-full"
             style={{
+              width: `${Math.random() * 300 + 200}px`,
+              height: `${Math.random() * 300 + 200}px`,
+              background: `radial-gradient(circle, ${
+                i % 4 === 0 ? 'rgba(59, 130, 246, 0.08)' : 
+                i % 4 === 1 ? 'rgba(147, 51, 234, 0.08)' : 
+                i % 4 === 2 ? 'rgba(236, 72, 153, 0.08)' :
+                'rgba(34, 197, 94, 0.06)'
+              }, transparent 70%)`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              background: `radial-gradient(circle, ${
-                i % 3 === 0 ? 'rgba(59, 130, 246, 0.1)' : 
-                i % 3 === 1 ? 'rgba(147, 51, 234, 0.1)' : 
-                'rgba(236, 72, 153, 0.1)'
-              }, transparent 70%)`,
               animationDelay: `${Math.random() * 6}s`,
+              filter: 'blur(1px)',
             }}
           />
         ))}
         
-        {/* Subtle Grid */}
+        {/* Enhanced Grid Pattern */}
         <div className="absolute inset-0 opacity-5" style={{
           backgroundImage: `
+            radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.3) 2px, transparent 2px),
+            radial-gradient(circle at 70% 70%, rgba(147, 51, 234, 0.3) 1px, transparent 1px),
             linear-gradient(rgba(59, 130, 246, 0.2) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(59, 130, 246, 0.2) 1px, transparent 1px)
+            linear-gradient(90deg, rgba(147, 51, 234, 0.2) 1px, transparent 1px)
           `,
-          backgroundSize: '80px 80px'
+          backgroundSize: '120px 120px, 80px 80px, 80px 80px, 80px 80px'
         }} />
+        
+        {/* Dynamic Connection Network */}
+        <svg className="absolute inset-0 w-full h-full opacity-10">
+          <line x1="15%" y1="15%" x2="35%" y2="45%" stroke="url(#featuresGradient1)" strokeWidth="1" strokeDasharray="4,6">
+            <animate attributeName="stroke-dashoffset" values="0;10" dur="4s" repeatCount="indefinite" />
+          </line>
+          <line x1="65%" y1="25%" x2="85%" y2="55%" stroke="url(#featuresGradient2)" strokeWidth="1" strokeDasharray="3,7">
+            <animate attributeName="stroke-dashoffset" values="10;0" dur="5s" repeatCount="indefinite" />
+          </line>
+          <line x1="25%" y1="75%" x2="55%" y2="45%" stroke="url(#featuresGradient3)" strokeWidth="1" strokeDasharray="5,5">
+            <animate attributeName="stroke-dashoffset" values="0;10" dur="3s" repeatCount="indefinite" />
+          </line>
+          <line x1="45%" y1="85%" x2="75%" y2="15%" stroke="url(#featuresGradient1)" strokeWidth="0.5" strokeDasharray="2,8">
+            <animate attributeName="stroke-dashoffset" values="10;0" dur="6s" repeatCount="indefinite" />
+          </line>
+          
+          <defs>
+            <linearGradient id="featuresGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgb(59, 130, 246)" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="rgb(147, 51, 234)" stopOpacity="0.1" />
+            </linearGradient>
+            <linearGradient id="featuresGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgb(236, 72, 153)" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="rgb(34, 197, 94)" stopOpacity="0.1" />
+            </linearGradient>
+            <linearGradient id="featuresGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgb(147, 51, 234)" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="rgb(59, 130, 246)" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
     <div className="container relative z-10 mx-auto px-3 md:px-10">
       <div className="px-5 py-32">
