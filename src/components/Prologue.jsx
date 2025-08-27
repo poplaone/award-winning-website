@@ -200,30 +200,30 @@ const NarrativeSection = () => {
           <div className="narrative-text text-center mb-8">
             <div className="inline-flex items-center gap-2 mb-4">
               <TiBook className="text-2xl text-purple-300" />
-              <span className="text-lg font-zentry font-bold text-purple-300">The Beginning</span>
+              <span className="text-lg font-zentry font-bold text-purple-300">The Genesis</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-zentry font-bold text-white mb-6">
-              In the Beginning, There Was Code...
+              In the Beginning, There Was Data...
             </h2>
           </div>
           
           <div className="max-w-4xl mx-auto space-y-6">
             <p className="narrative-text text-lg font-circular-web text-blue-100/90 leading-relaxed">
-              Before the first pixel was rendered, before the first character was created, 
-              there existed only the infinite potential of the digital realm. A space where 
-              imagination could take form, where stories could come alive, and where legends 
-              could be born.
+              Before the first algorithm was written, before the first model was trained, 
+              there existed only the infinite potential of raw data. A space where 
+              intelligence could emerge, where patterns could be discovered, and where 
+              artificial minds could be born.
             </p>
             
             <p className="narrative-text text-lg font-circular-web text-blue-100/80 leading-relaxed">
-              This is the story of Zentry—a universe where every action echoes across dimensions, 
-              where every choice shapes reality, and where every player becomes part of something 
-              greater than themselves. Welcome to the prologue of the greatest adventure ever told.
+              This is the story of NeuralForge—a platform where every dataset fuels innovation, 
+              where every model shapes the future, and where every developer becomes part of something 
+              greater than themselves. Welcome to the prologue of the greatest AI revolution ever told.
             </p>
             
             <div className="narrative-text text-center pt-6">
               <div className="inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 px-8 py-4">
-                <span className="text-white font-zentry">Your journey begins here</span>
+                <span className="text-white font-zentry">Your AI transformation begins here</span>
                 <div className="w-8 h-px bg-gradient-to-r from-purple-400 to-pink-400" />
                 <TiLocationArrow className="text-purple-300" />
               </div>
@@ -242,32 +242,32 @@ const Prologue = () => {
   const chapters = [
     {
       chapter: 1,
-      title: "The Awakening",
-      excerpt: "In the digital realm where consciousness first stirred, a new form of existence began to take shape. Players discovered they were more than mere observers—they were architects of reality itself.",
+      title: "The Data Renaissance",
+      excerpt: "In the digital realm where information first accumulated, a new form of intelligence began to emerge. Developers discovered they were more than mere programmers—they were architects of artificial minds.",
       video: "videos/hero-1.mp4",
     },
     {
       chapter: 2,
-      title: "The Convergence",
-      excerpt: "Worlds that once existed in isolation began to merge, creating pathways between dimensions. The boundaries between games dissolved, revealing a greater tapestry of interconnected experiences.",
+      title: "The Model Convergence",
+      excerpt: "Algorithms that once existed in isolation began to merge, creating pathways between different AI domains. The boundaries between specialized models dissolved, revealing a greater tapestry of interconnected intelligence.",
       image: "img/entrance.webp",
     },
     {
       chapter: 3,
-      title: "The Nexus Forms",
-      excerpt: "From the convergence emerged a central hub—a nexus where all realities connected. Here, players could traverse between worlds, carrying their achievements and identities across infinite possibilities.",
+      title: "The Neural Hub",
+      excerpt: "From the convergence emerged a central platform—a nexus where all AI models connected. Here, developers could traverse between different intelligence systems, carrying their innovations across infinite possibilities.",
       video: "videos/hero-2.mp4",
     },
     {
       chapter: 4,
-      title: "The Great Vault",
-      excerpt: "As treasures and artifacts accumulated across worlds, a great vault materialized to house these digital possessions. More than storage, it became a testament to every achievement and adventure.",
+      title: "The Intelligence Vault",
+      excerpt: "As datasets and trained models accumulated across platforms, a great vault materialized to house these digital assets. More than storage, it became a testament to every breakthrough and innovation.",
       image: "img/gallery-4.webp",
     },
     {
       chapter: 5,
-      title: "The Meta Layer",
-      excerpt: "Above all realities, a meta-layer emerged—a space where the rules of individual worlds gave way to grander possibilities. This is where true legends would be forged.",
+      title: "The AI Layer",
+      excerpt: "Above all systems, an AI meta-layer emerged—a space where the rules of individual models gave way to grander possibilities. This is where true artificial intelligence would be forged.",
       video: "videos/hero-3.mp4",
     },
   ];
@@ -322,17 +322,17 @@ const Prologue = () => {
         {/* Header Section */}
         <div className="text-center mb-16">
           <div className="chapter-badge mx-auto mb-6">
-            Origin Story
+            AI Evolution
           </div>
           
           <AnimatedTitle
-            title="The Pr<b>o</b>l<b>o</b>gue"
+            title="The AI J<b>o</b>urn<b>e</b>y"
             containerClass="mb-8"
           />
           
           <p className="max-w-2xl mx-auto text-lg font-circular-web text-blue-100/80 leading-relaxed">
-            Every legend has a beginning. Every universe has an origin. 
-            This is where your story starts.
+            Every revolution has a beginning. Every breakthrough has an origin. 
+            This is where your AI transformation starts.
           </p>
         </div>
 
@@ -376,15 +376,15 @@ const Prologue = () => {
         {/* Call to Action */}
         <div className="text-center">
           <div className="inline-flex flex-col items-center gap-6 rounded-2xl border border-purple-400/30 bg-gradient-to-br from-purple-900/20 to-black/50 p-8 backdrop-blur-sm">
-            <h3 className="text-2xl font-zentry font-bold text-white">Ready to Begin Your Journey?</h3>
+            <h3 className="text-2xl font-zentry font-bold text-white">Ready to Begin Your AI Journey?</h3>
             <p className="max-w-md text-center font-circular-web text-blue-100/80">
-              The prologue ends here, but your adventure is just beginning. 
-              Step into the world of Zentry and become part of the legend.
+              The prologue ends here, but your AI transformation is just beginning. 
+              Step into the world of NeuralForge and become part of the intelligence revolution.
             </p>
             
             <div className="flex flex-wrap gap-4 justify-center">
               <button className="group flex items-center gap-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 font-general font-bold text-white transition-all duration-300 hover:from-purple-600 hover:to-pink-600 hover:scale-105">
-                <span>Enter the World</span>
+                <span>Enter the Platform</span>
                 <TiLocationArrow className="transition-transform duration-300 group-hover:translate-x-1" />
               </button>
               

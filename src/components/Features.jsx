@@ -217,12 +217,12 @@ const Features = () => {
     <div className="container relative z-10 mx-auto px-3 md:px-10">
       <div className="px-5 py-32">
         <p className="font-circular-web text-lg text-blue-50">
-          Into the Metagame Layer
+          Into the AI Intelligence Layer
         </p>
         <p className="max-w-md font-circular-web text-lg text-blue-50 opacity-50">
-          Immerse yourself in a rich and ever-expanding universe where a vibrant
-          array of products converge into an interconnected overlay experience
-          on your world.
+          Immerse yourself in a rich and ever-expanding ecosystem where cutting-edge
+          AI models converge into an interconnected intelligence platform
+          that transforms your workflow.
         </p>
       </div>
 
@@ -231,10 +231,10 @@ const Features = () => {
           src="videos/feature-1.mp4"
           title={
             <>
-              radia<b>n</b>t
+              n<b>e</b>ural<b>n</b>et
             </>
           }
-          description="A cross-platform metagame app, turning your activities across Web2 and Web3 games into a rewarding adventure."
+          description="A cross-platform AI orchestration engine, turning your data and workflows into intelligent, automated processes."
           isComingSoon
         />
       </BentoTilt>
@@ -245,10 +245,10 @@ const Features = () => {
             src="videos/feature-2.mp4"
             title={
               <>
-                zig<b>m</b>a
+                cognit<b>i</b>ve
               </>
             }
-            description="An anime and gaming-inspired NFT collection - the IP primed for expansion."
+            description="An advanced machine learning model collection - the intelligence framework primed for innovation."
             isComingSoon
           />
         </BentoTilt>
@@ -261,7 +261,7 @@ const Features = () => {
                 n<b>e</b>xus
               </>
             }
-            description="A gamified social hub, adding a new dimension of play to social interaction for Web3 communities."
+            description="An intelligent model hub, adding a new dimension of AI collaboration and deployment for enterprise teams."
             isComingSoon
           />
         </BentoTilt>
@@ -271,10 +271,10 @@ const Features = () => {
             src="videos/feature-4.mp4"
             title={
               <>
-                az<b>u</b>l
+                qu<b>a</b>ntum
               </>
             }
-            description="A cross-world AI Agent - elevating your gameplay to be more fun and productive."
+            description="A next-generation AI Agent - elevating your productivity to be more intelligent and automated."
             isComingSoon
           />
         </BentoTilt>
@@ -282,7 +282,7 @@ const Features = () => {
         <BentoTilt className="bento-tilt_2">
           <div className="flex size-full flex-col justify-between bg-violet-300 p-5">
             <h1 className="bento-title special-font max-w-64 text-black">
-              M<b>o</b>re co<b>m</b>ing s<b>o</b>on.
+              M<b>o</b>re AI p<b>o</b>wer c<b>o</b>ming s<b>o</b>on.
             </h1>
 
             <TiLocationArrow className="m-5 scale-[5] self-end" />

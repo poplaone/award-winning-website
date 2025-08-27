@@ -188,8 +188,8 @@ const StatsPanel = ({ totalItems, selectedItems, totalValue }) => {
         </div>
         
         <div className="text-center p-6 rounded-xl bg-gradient-to-br from-yellow-900/30 to-orange-900/30 border border-white/10 backdrop-blur-sm">
-          <div className="text-3xl font-zentry font-bold text-white mb-2">{totalValue}</div>
-          <div className="text-sm font-general uppercase tracking-wider text-white/60">Total Value</div>
+              <div className="text-3xl font-zentry font-bold text-white mb-2">{totalValue}</div>
+              <div className="text-sm font-general uppercase tracking-wider text-white/60">Processing Power</div>
         </div>
       </div>
     </div>
@@ -201,65 +201,65 @@ const Vault = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const sectionRef = useRef(null);
 
-  const categories = ['All', 'Weapons', 'Armor', 'Artifacts', 'Collectibles'];
+  const categories = ['All', 'Models', 'Datasets', 'Pipelines', 'Analytics'];
 
   const vaultItems = [
     {
-      title: "Crimson Blade",
+      title: "GPT-4 Turbo",
       rarity: "legendary",
-      category: "Weapons",
+      category: "Models",
       video: "videos/feature-1.mp4",
-      value: "2,500 ZEN",
+      value: "2,500 tokens/sec",
     },
     {
-      title: "Mystic Scroll",
+      title: "Customer Dataset",
       rarity: "epic",
-      category: "Artifacts",
+      category: "Datasets",
       image: "img/gallery-1.webp",
-      value: "1,200 ZEN",
+      value: "1.2M records",
     },
     {
-      title: "Guardian Shield",
+      title: "Vision Classifier",
       rarity: "rare",
-      category: "Armor",
+      category: "Models",
       video: "videos/feature-2.mp4",
-      value: "800 ZEN",
+      value: "95.8% accuracy",
     },
     {
-      title: "Ancient Rune",
+      title: "Quantum Dataset",
       rarity: "legendary",
-      category: "Collectibles",
+      category: "Datasets",
       image: "img/gallery-2.webp",
-      value: "3,000 ZEN",
+      value: "3TB processed",
       isLocked: true,
     },
     {
-      title: "Storm Gauntlets",
+      title: "ML Pipeline Pro",
       rarity: "epic",
-      category: "Armor",
+      category: "Pipelines",
       video: "videos/feature-3.mp4",
-      value: "1,500 ZEN",
+      value: "1,500 ops/min",
     },
     {
-      title: "Phoenix Feather",
+      title: "Sentiment Engine",
       rarity: "rare",
-      category: "Artifacts",
+      category: "Analytics",
       image: "img/gallery-3.webp",
-      value: "600 ZEN",
+      value: "92% precision",
     },
     {
-      title: "Void Essence",
+      title: "Neural Network",
       rarity: "legendary",
-      category: "Collectibles",
+      category: "Models",
       video: "videos/feature-4.mp4",
-      value: "4,000 ZEN",
+      value: "10B parameters",
     },
     {
-      title: "Silver Dagger",
+      title: "Basic Classifier",
       rarity: "common",
-      category: "Weapons",
+      category: "Models",
       image: "img/gallery-4.webp",
-      value: "200 ZEN",
+      value: "87% accuracy",
     },
   ];
 
@@ -316,17 +316,17 @@ const Vault = () => {
         {/* Header Section */}
         <div className="text-center mb-16">
           <div className="vault-badge mx-auto mb-6 bg-gradient-to-r from-yellow-400 to-orange-500">
-            Digital Vault
+            Data Intelligence Vault
           </div>
           
           <AnimatedTitle
-            title="Y<b>o</b>ur Digit<b>a</b>l Tr<b>e</b>asure"
+            title="Y<b>o</b>ur Int<b>e</b>llig<b>e</b>nce Assets"
             containerClass="mb-8"
           />
           
           <p className="max-w-2xl mx-auto text-lg font-circular-web text-blue-100/80 leading-relaxed">
-            Secure, trade, and showcase your most valuable digital assets. 
-            Your collection awaits in the ultimate gaming vault.
+            Secure, analyze, and deploy your most valuable AI models and datasets. 
+            Your intelligence collection awaits in the ultimate data vault.
           </p>
         </div>
 
@@ -334,7 +334,7 @@ const Vault = () => {
         <StatsPanel 
           totalItems={vaultItems.length}
           selectedItems={selectedItems.length}
-          totalValue="12.8K ZEN"
+          totalValue="12.8K FLOPS"
         />
 
         {/* Category Filter */}
@@ -360,17 +360,17 @@ const Vault = () => {
           <div className="inline-flex items-center gap-6 rounded-2xl border border-white/20 bg-gradient-to-r from-gray-900/50 to-black/50 px-8 py-6 backdrop-blur-sm">
             <div className="flex items-center gap-3">
               <TiGift className="text-2xl text-yellow-300" />
-              <span className="text-lg font-zentry font-bold text-white">Manage Collection</span>
+              <span className="text-lg font-zentry font-bold text-white">Manage AI Assets</span>
             </div>
             
             <div className="h-6 w-px bg-white/20" />
             
             <div className="flex gap-3">
               <button className="rounded-full bg-blue-500 px-6 py-2 font-general text-sm font-bold text-white transition-all duration-300 hover:bg-blue-600">
-                Trade
+                Deploy
               </button>
               <button className="rounded-full bg-gradient-to-r from-yellow-300 to-orange-400 px-6 py-2 font-general text-sm font-bold text-black transition-all duration-300 hover:from-yellow-400 hover:to-orange-500">
-                Showcase
+                Analyze
               </button>
             </div>
           </div>

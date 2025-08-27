@@ -131,19 +131,19 @@ const About = () => {
 
       <div className="relative z-10 mb-8 mt-36 flex flex-col items-center gap-5">
         <p className="font-general text-sm uppercase md:text-[10px]">
-          Welcome to Zentry
+          Welcome to NeuralForge
         </p>
 
         <AnimatedTitle
-          title="Disc<b>o</b>ver the world's <br /> largest shared <b>a</b>dventure"
+          title="Disc<b>o</b>ver the world's <br /> smartest AI <b>e</b>cosystem"
           containerClass="mt-5 !text-black text-center"
         />
 
         <div className="about-subtext">
-          <p>The Game of Games begins—your life, now an epic MMORPG</p>
+          <p>The Intelligence Revolution begins—your world, now powered by AI</p>
           <p className="text-gray-500">
-            Zentry unites every player from countless games and platforms, both
-            digital and physical, into a unified Play Economy
+            NeuralForge unites cutting-edge AI models, data pipelines, and intelligent 
+            systems into a unified AI ecosystem that transforms how you work and innovate
           </p>
         </div>
       </div>

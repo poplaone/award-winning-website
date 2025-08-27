@@ -165,30 +165,30 @@ const Nexus = () => {
     );
   }, []);
 
-  const gameCards = [
+  const aiModelCards = [
     {
-      title: "Combat Arena",
-      description: "Engage in epic battles across multiple realms. Master weapons, spells, and strategy in this immersive combat experience.",
+      title: "Neural Vision",
+      description: "Advanced computer vision models for image recognition, object detection, and visual analysis. Deploy at scale with enterprise-grade performance.",
       video: "videos/feature-1.mp4",
-      badge: "PVP",
+      badge: "CV",
     },
     {
-      title: "Realm Explorer",
-      description: "Discover hidden worlds and uncover ancient mysteries. Each realm offers unique challenges and legendary rewards.",
+      title: "Language Master",
+      description: "State-of-the-art natural language processing models. From text generation to sentiment analysis and language translation.",
       video: "videos/feature-2.mp4",
-      badge: "Adventure",
+      badge: "NLP",
     },
     {
-      title: "Guild Nexus",
-      description: "Connect with players worldwide. Form alliances, share resources, and conquer challenges together in this social hub.",
+      title: "Data Fusion",
+      description: "Connect and analyze data from multiple sources. Advanced algorithms for predictive analytics and business intelligence.",
       video: "videos/feature-3.mp4",
-      badge: "Social",
+      badge: "Analytics",
     },
     {
-      title: "AI Companion",
-      description: "Your intelligent gaming assistant. Get real-time strategy tips, performance analytics, and personalized recommendations.",
+      title: "AutoML Engine",
+      description: "Automated machine learning platform. Build, train, and deploy custom models without extensive ML expertise required.",
       video: "videos/feature-4.mp4",
-      badge: "AI",
+      badge: "AutoML",
     },
   ];
 
@@ -221,17 +221,17 @@ const Nexus = () => {
         {/* Header Section */}
         <div className="text-center mb-16">
           <div className="nexus-badge mx-auto mb-6">
-            Gaming Nexus
+            AI Model Hub
           </div>
           
           <AnimatedTitle
-            title="C<b>o</b>nnect • C<b>o</b>mpete • C<b>o</b>nquer"
+            title="C<b>o</b>nnect • C<b>o</b>mpute • C<b>r</b>eate"
             containerClass="mb-8"
           />
           
           <p className="max-w-2xl mx-auto text-lg font-circular-web text-blue-100/80 leading-relaxed">
-            Enter the ultimate gaming ecosystem where every action matters, every connection counts, 
-            and every victory echoes across the metaverse.
+            Enter the ultimate AI ecosystem where every model matters, every connection counts, 
+            and every innovation accelerates across the intelligence network.
           </p>
         </div>
 
@@ -262,14 +262,14 @@ const Nexus = () => {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
               <h3 className="text-xl font-zentry font-bold text-white mb-1">Live Network</h3>
-              <p className="text-sm font-general text-yellow-300">47,392 Active Players</p>
+              <p className="text-sm font-general text-yellow-300">47,392 Active Models</p>
             </div>
           </div>
         </div>
 
-        {/* Game Cards Grid */}
+        {/* AI Model Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {gameCards.map((card, index) => (
+          {aiModelCards.map((card, index) => (
             <GameCard key={index} {...card} index={index} />
           ))}
         </div>
@@ -277,9 +277,9 @@ const Nexus = () => {
         {/* Call to Action */}
         <div className="text-center">
           <div className="inline-flex items-center gap-4 rounded-full border border-yellow-300/30 bg-gradient-to-r from-yellow-300/10 to-purple-400/10 px-8 py-4 backdrop-blur-sm">
-            <span className="text-lg font-zentry font-bold text-white">Ready to Join?</span>
+            <span className="text-lg font-zentry font-bold text-white">Ready to Build?</span>
             <div className="group flex items-center gap-2 rounded-full bg-yellow-300 px-6 py-2 transition-all duration-300 hover:bg-yellow-400 cursor-pointer">
-              <span className="text-sm font-general font-bold text-black uppercase tracking-wider">Enter Nexus</span>
+              <span className="text-sm font-general font-bold text-black uppercase tracking-wider">Enter Hub</span>
               <TiLocationArrow className="text-black transition-transform duration-300 group-hover:translate-x-1" />
             </div>
           </div>
