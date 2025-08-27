@@ -141,6 +141,156 @@ body {
   .contact-clip-path-2 {
     clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
   }
+
+  /* Nexus Component Styles */
+  .nexus-badge {
+    @apply inline-block rounded-full border border-yellow-300/30 bg-gradient-to-r from-yellow-300/10 to-purple-400/10 px-4 py-2 text-sm font-general uppercase tracking-widest text-yellow-300 backdrop-blur-sm;
+  }
+
+  .game-card {
+    @apply relative overflow-hidden rounded-2xl transition-all duration-500 ease-out;
+    will-change: transform;
+  }
+
+  .floating-particle {
+    will-change: transform;
+  }
+
+  .connection-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+
+  /* Vault Component Styles */
+  .vault-badge {
+    @apply inline-block rounded-full px-3 py-1 text-xs font-general font-bold uppercase tracking-wider text-white;
+  }
+
+  .vault-item {
+    @apply relative transition-all duration-300 ease-out;
+    will-change: transform;
+  }
+
+  .vault-particle {
+    will-change: transform;
+  }
+
+  /* Prologue Component Styles */
+  .chapter-badge {
+    @apply inline-block rounded-full border border-purple-400/30 bg-gradient-to-r from-purple-400/10 to-pink-400/10 px-3 py-1 text-xs font-general font-bold uppercase tracking-wider text-purple-300 backdrop-blur-sm;
+  }
+
+  .chapter-card {
+    @apply relative transition-all duration-300 ease-out;
+    will-change: transform;
+  }
+
+  .prologue-particle {
+    will-change: transform;
+  }
+
+  .timeline-progress {
+    will-change: transform;
+  }
+
+  .narrative-text {
+    will-change: transform, opacity;
+  }
+
+  /* Utility Classes */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  .scale-102 {
+    transform: scale(1.02);
+  }
+
+  /* Enhanced Background Particles */
+  .about-particle {
+    will-change: transform;
+  }
+
+  .about-gradient {
+    will-change: transform;
+  }
+
+  .features-particle {
+    will-change: transform;
+  }
+
+  .features-glow {
+    will-change: transform, opacity;
+  }
+
+  .contact-particle {
+    will-change: transform;
+  }
+
+  .contact-glow {
+    will-change: transform, opacity;
+  }
+
+  .story-particle {
+    will-change: transform;
+  }
+
+  .story-glow {
+    will-change: transform, opacity;
+  }
+
+  /* Performance Optimizations */
+  @media (prefers-reduced-motion: reduce) {
+    .floating-particle,
+    .vault-particle,
+    .prologue-particle,
+    .about-particle,
+    .features-particle,
+    .contact-particle,
+    .story-particle {
+      animation: none !important;
+    }
+    
+    .animated-word {
+      transform: none !important;
+      opacity: 1 !important;
+    }
+
+    .about-gradient,
+    .features-glow,
+    .contact-glow,
+    .story-glow {
+      animation: none !important;
+    }
+  }
+
+  /* Enhanced Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .game-card {
+      @apply h-64;
+    }
+    
+    .vault-item {
+      @apply h-56;
+    }
+    
+    .chapter-card {
+      @apply mb-6;
+    }
+    
+    .nexus-badge,
+    .vault-badge,
+    .chapter-badge {
+      @apply text-xs px-3 py-1;
+    }
+  }
 }
 
 .indicator-line {

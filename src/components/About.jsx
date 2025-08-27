@@ -24,11 +24,59 @@ const About = () => {
       height: "100vh",
       borderRadius: 0,
     });
+
+    // Floating particles animation
+    gsap.to(".about-particle", {
+      y: "random(-30, 30)",
+      x: "random(-20, 20)",
+      rotation: "random(-180, 180)",
+      duration: 8,
+      repeat: -1,
+      yoyo: true,
+      stagger: 0.3,
+      ease: "sine.inOut",
+    });
+
+    // Background gradient animation
+    gsap.to(".about-gradient", {
+      rotation: 360,
+      duration: 20,
+      repeat: -1,
+      ease: "none",
+    });
   });
 
   return (
-    <div id="about" className="min-h-screen w-screen">
-      <div className="relative mb-8 mt-36 flex flex-col items-center gap-5">
+    <div id="about" className="relative min-h-screen w-screen overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+      {/* Enhanced Background */}
+      <div className="absolute inset-0">
+        {/* Animated Gradient Overlay */}
+        <div className="about-gradient absolute inset-0 bg-gradient-radial from-blue-200/30 via-purple-200/20 to-transparent" />
+        
+        {/* Floating Particles */}
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={i}
+            className="about-particle absolute w-2 h-2 bg-blue-400/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 8}s`,
+            }}
+          />
+        ))}
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: `
+            linear-gradient(rgba(59, 130, 246, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.3) 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px'
+        }} />
+      </div>
+
+      <div className="relative z-10 mb-8 mt-36 flex flex-col items-center gap-5">
         <p className="font-general text-sm uppercase md:text-[10px]">
           Welcome to Zentry
         </p>

@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 import { TiLocationArrow } from "react-icons/ti";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export const BentoTilt = ({ children, className = "" }) => {
   const [transformStyle, setTransformStyle] = useState("");
@@ -98,9 +100,77 @@ export const BentoCard = ({ src, title, description, isComingSoon }) => {
   );
 };
 
-const Features = () => (
-  <section className="bg-black pb-52">
-    <div className="container mx-auto px-3 md:px-10">
+const Features = () => {
+  useGSAP(() => {
+    // Floating particles animation
+    gsap.to(".features-particle", {
+      y: "random(-40, 40)",
+      x: "random(-30, 30)",
+      rotation: "random(-360, 360)",
+      duration: 12,
+      repeat: -1,
+      yoyo: true,
+      stagger: 0.4,
+      ease: "sine.inOut",
+    });
+
+    // Ambient glow animation
+    gsap.to(".features-glow", {
+      opacity: "random(0.1, 0.3)",
+      scale: "random(0.8, 1.2)",
+      duration: 6,
+      repeat: -1,
+      yoyo: true,
+      stagger: 0.2,
+      ease: "power2.inOut",
+    });
+  });
+
+  return (
+    <section className="relative bg-black pb-52 overflow-hidden">
+      {/* Enhanced Background */}
+      <div className="absolute inset-0">
+        {/* Floating Particles */}
+        {Array.from({ length: 25 }).map((_, i) => (
+          <div
+            key={i}
+            className="features-particle absolute w-1.5 h-1.5 bg-blue-400/30 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 12}s`,
+            }}
+          />
+        ))}
+        
+        {/* Ambient Glows */}
+        {Array.from({ length: 8 }).map((_, i) => (
+          <div
+            key={i}
+            className="features-glow absolute w-96 h-96 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: `radial-gradient(circle, ${
+                i % 3 === 0 ? 'rgba(59, 130, 246, 0.1)' : 
+                i % 3 === 1 ? 'rgba(147, 51, 234, 0.1)' : 
+                'rgba(236, 72, 153, 0.1)'
+              }, transparent 70%)`,
+              animationDelay: `${Math.random() * 6}s`,
+            }}
+          />
+        ))}
+        
+        {/* Subtle Grid */}
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: `
+            linear-gradient(rgba(59, 130, 246, 0.2) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.2) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px'
+        }} />
+      </div>
+    <div className="container relative z-10 mx-auto px-3 md:px-10">
       <div className="px-5 py-32">
         <p className="font-circular-web text-lg text-blue-50">
           Into the Metagame Layer
@@ -187,6 +257,7 @@ const Features = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Features;
