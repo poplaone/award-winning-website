@@ -14,14 +14,15 @@ const ChapterCard = ({ chapter, title, excerpt, image, video, index, isActive, o
 
   useGSAP(() => {
     gsap.from(cardRef.current, {
-      x: index % 2 === 0 ? -100 : 100,
+      scale: 0.8,
       opacity: 0,
-      duration: 1,
-      delay: index * 0.3,
-      ease: "power3.out",
+      rotationY: 45,
+      duration: 0.8,
+      delay: index * 0.1,
+      ease: "back.out(1.7)",
       scrollTrigger: {
         trigger: cardRef.current,
-        start: "top 80%",
+        start: "top 85%",
         toggleActions: "play none none reverse",
       },
     });
@@ -39,14 +40,12 @@ const ChapterCard = ({ chapter, title, excerpt, image, video, index, isActive, o
   return (
     <div
       ref={cardRef}
-      className={`chapter-card group cursor-pointer transition-all duration-500 ${
-        isActive ? 'scale-105 shadow-2xl shadow-purple-500/20' : 'hover:scale-102'
-      }`}
+      className="chapter-card group cursor-pointer transition-all duration-500 hover:scale-102"
       onClick={onClick}
     >
-      <div className={`relative overflow-hidden rounded-2xl border-2 transition-all duration-500 ${
+      <div className={`relative overflow-hidden rounded-xl border-2 transition-all duration-500 ${
         isActive 
-          ? 'border-purple-400 bg-gradient-to-br from-purple-900/30 to-black' 
+          ? 'border-yellow-400 bg-gradient-to-br from-yellow-900/30 to-black shadow-lg shadow-yellow-400/20' 
           : 'border-white/20 bg-gradient-to-br from-gray-900/50 to-black hover:border-white/40'
       }`}>
         {/* Background Media */}
@@ -57,33 +56,34 @@ const ChapterCard = ({ chapter, title, excerpt, image, video, index, isActive, o
               loop
               muted
               autoPlay
-              className="absolute inset-0 h-full w-full object-cover opacity-60"
+              className="absolute inset-0 h-full w-full object-cover opacity-40"
             />
           ) : (
             <img
               src={image}
               alt={title}
-              className="absolute inset-0 h-full w-full object-cover opacity-60"
+              className="absolute inset-0 h-full w-full object-cover opacity-40"
             />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/30 to-cyan-900/30 opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
           
           {/* Chapter Number */}
           <div className="absolute top-4 left-4">
-            <div className="chapter-badge">
+            <div className="vault-badge bg-gradient-to-r from-yellow-400 to-orange-500">
               Chapter {chapter}
             </div>
           </div>
           
           {/* Status Indicator */}
           <div className={`absolute top-4 right-4 w-3 h-3 rounded-full ${
-            isActive ? 'bg-purple-400 animate-pulse' : 'bg-white/30'
+            isActive ? 'bg-yellow-400 animate-pulse' : 'bg-white/30'
           }`} />
         </div>
 
         {/* Content */}
-        <div className="p-6">
-          <h3 className="text-xl font-zentry font-bold text-white mb-3 group-hover:text-purple-300 transition-colors duration-300">
+        <div className="p-4">
+          <h3 className="text-lg font-zentry font-bold text-white mb-3 group-hover:text-yellow-300 transition-colors duration-300">
             {title}
           </h3>
           
@@ -93,17 +93,17 @@ const ChapterCard = ({ chapter, title, excerpt, image, video, index, isActive, o
               isActive ? 'opacity-100' : 'opacity-70 h-16'
             }`}
           >
-            <p className="font-circular-web text-blue-100/80 leading-relaxed">
+            <p className="font-circular-web text-blue-100/80 leading-relaxed text-sm">
               {excerpt}
             </p>
             
             {isActive && (
               <div className="mt-4 flex items-center justify-between">
-                <div className="flex items-center gap-2 text-sm text-purple-300">
+                <div className="flex items-center gap-2 text-sm text-yellow-300">
                   <TiTime className="text-base" />
                   <span className="font-general">8 min read</span>
                 </div>
-                <div className="group/arrow flex items-center gap-2 text-purple-300 transition-all duration-300 hover:text-purple-200">
+                <div className="group/arrow flex items-center gap-2 text-yellow-300 transition-all duration-300 hover:text-yellow-200">
                   <span className="font-general text-sm">Continue Reading</span>
                   <TiLocationArrow className="transition-transform duration-300 group-hover/arrow:translate-x-1" />
                 </div>
@@ -144,11 +144,11 @@ const TimelineMarker = ({ index, isActive, total }) => {
     >
       <div className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${
         isActive 
-          ? 'bg-purple-400 border-purple-400 scale-150 shadow-lg shadow-purple-400/50' 
+          ? 'bg-yellow-400 border-yellow-400 scale-150 shadow-lg shadow-yellow-400/50' 
           : 'bg-white/20 border-white/40 hover:bg-white/40'
       }`}>
         {isActive && (
-          <div className="absolute inset-0 bg-purple-400 rounded-full animate-ping" />
+          <div className="absolute inset-0 bg-yellow-400 rounded-full animate-ping" />
         )}
       </div>
       
@@ -184,43 +184,44 @@ const NarrativeSection = () => {
 
   return (
     <div ref={narrativeRef} className="mb-20">
-      <div className="relative rounded-3xl border border-white/20 bg-gradient-to-br from-purple-900/20 to-black/50 p-8 md:p-12 backdrop-blur-sm">
+      <div className="relative rounded-2xl border border-white/20 bg-gradient-to-br from-gray-900/30 to-cyan-900/30 p-6 md:p-8 backdrop-blur-sm">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: `radial-gradient(circle at 50% 50%, white 1px, transparent 1px)`,
-          backgroundSize: '30px 30px'
+          backgroundImage: `linear-gradient(cyan 1px, transparent 1px),
+            linear-gradient(90deg, cyan 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
         }} />
         
         <div className="relative z-10">
-          <div className="narrative-text text-center mb-8">
+          <div className="narrative-text text-center mb-6">
             <div className="inline-flex items-center gap-2 mb-4">
-              <TiBook className="text-2xl text-purple-300" />
-              <span className="text-lg font-zentry font-bold text-purple-300">The Genesis</span>
+              <TiBook className="text-2xl text-cyan-400" />
+              <span className="text-lg font-zentry font-bold text-cyan-400">The Genesis</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-zentry font-bold text-white mb-6">
+            <h2 className="text-2xl md:text-3xl font-zentry font-bold text-white mb-4">
               In the Beginning, There Was Data...
             </h2>
           </div>
           
-          <div className="max-w-4xl mx-auto space-y-6">
-            <p className="narrative-text text-lg font-circular-web text-blue-100/90 leading-relaxed">
+          <div className="max-w-4xl mx-auto space-y-4">
+            <p className="narrative-text text-base font-circular-web text-blue-100/90 leading-relaxed">
               Before the first algorithm was written, before the first model was trained, 
               there existed only the infinite potential of raw data. A space where 
               intelligence could emerge, where patterns could be discovered, and where 
               artificial minds could be born.
             </p>
             
-            <p className="narrative-text text-lg font-circular-web text-blue-100/80 leading-relaxed">
+            <p className="narrative-text text-base font-circular-web text-blue-100/80 leading-relaxed">
               This is the story of NeuralForge—a platform where every dataset fuels innovation, 
               where every model shapes the future, and where every developer becomes part of something 
               greater than themselves. Welcome to the prologue of the greatest AI revolution ever told.
             </p>
             
-            <div className="narrative-text text-center pt-6">
-              <div className="inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 px-8 py-4">
-                <span className="text-white font-zentry">Your AI transformation begins here</span>
-                <div className="w-8 h-px bg-gradient-to-r from-purple-400 to-pink-400" />
-                <TiLocationArrow className="text-purple-300" />
+            <div className="narrative-text text-center pt-4">
+              <div className="inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 px-6 py-3">
+                <span className="text-white font-zentry text-sm">Your AI transformation begins here</span>
+                <div className="w-6 h-px bg-gradient-to-r from-cyan-400 to-blue-400" />
+                <TiLocationArrow className="text-cyan-300 text-sm" />
               </div>
             </div>
           </div>
@@ -268,15 +269,15 @@ const Prologue = () => {
   ];
 
   useGSAP(() => {
-    // Ambient floating animation for background elements
+    // Floating background elements
     gsap.to(".prologue-particle", {
-      y: "random(-30, 30)",
+      y: "-=30",
       x: "random(-20, 20)",
       rotation: "random(-180, 180)",
-      duration: 10,
+      duration: 8,
       repeat: -1,
       yoyo: true,
-      stagger: 0.5,
+      stagger: 0.3,
       ease: "sine.inOut",
     });
 
@@ -292,25 +293,16 @@ const Prologue = () => {
     <section 
       id="prologue" 
       ref={sectionRef}
-      className="relative min-h-screen w-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-hidden"
+      className="relative min-h-screen w-screen bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden"
     >
-      {/* Enhanced Background matching About section */}
+      {/* Animated Background */}
       <div className="absolute inset-0">
-        {/* Animated Gradient Overlay */}
-        <div className="about-gradient absolute inset-0 bg-gradient-radial from-blue-200/30 via-purple-200/20 to-transparent" />
-        
-        {/* Primary Floating Particles */}
-        {Array.from({ length: 35 }).map((_, i) => (
+        {/* Floating Particles */}
+        {Array.from({ length: 15 }).map((_, i) => (
           <div
-            key={`primary-${i}`}
-            className="prologue-particle absolute rounded-full"
+            key={i}
+            className="prologue-particle absolute w-2 h-2 bg-yellow-400/20 rounded-full"
             style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              backgroundColor: i % 4 === 0 ? 'rgba(59, 130, 246, 0.3)' :
-                              i % 4 === 1 ? 'rgba(147, 51, 234, 0.3)' :
-                              i % 4 === 2 ? 'rgba(236, 72, 153, 0.3)' :
-                              'rgba(167, 243, 208, 0.3)',
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 8}s`,
@@ -318,76 +310,29 @@ const Prologue = () => {
           />
         ))}
         
-        {/* Secondary Glow Particles */}
-        {Array.from({ length: 12 }).map((_, i) => (
-          <div
-            key={`glow-${i}`}
-            className="about-gradient absolute rounded-full"
-            style={{
-              width: `${Math.random() * 200 + 100}px`,
-              height: `${Math.random() * 200 + 100}px`,
-              background: `radial-gradient(circle, ${
-                i % 3 === 0 ? 'rgba(59, 130, 246, 0.08)' :
-                i % 3 === 1 ? 'rgba(147, 51, 234, 0.08)' :
-                'rgba(236, 72, 153, 0.08)'
-              }, transparent 70%)`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 20}s`,
-              filter: 'blur(1px)',
-            }}
-          />
-        ))}
-        
-        {/* Geometric Patterns */}
+        {/* Grid Pattern */}
         <div className="absolute inset-0 opacity-5" style={{
           backgroundImage: `
-            radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.2) 2px, transparent 2px),
-            radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.2) 1px, transparent 1px),
-            linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(147, 51, 234, 0.1) 1px, transparent 1px)
+            linear-gradient(white 1px, transparent 1px),
+            linear-gradient(90deg, white 1px, transparent 1px)
           `,
-          backgroundSize: '100px 100px, 80px 80px, 60px 60px, 60px 60px'
+          backgroundSize: '50px 50px'
         }} />
-        
-        {/* Dynamic Connection Lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-10">
-          <line x1="10%" y1="10%" x2="30%" y2="40%" stroke="url(#prologueGradient1)" strokeWidth="1" strokeDasharray="5,5">
-            <animate attributeName="stroke-dashoffset" values="0;10" dur="3s" repeatCount="indefinite" />
-          </line>
-          <line x1="70%" y1="20%" x2="90%" y2="50%" stroke="url(#prologueGradient1)" strokeWidth="1" strokeDasharray="3,7">
-            <animate attributeName="stroke-dashoffset" values="10;0" dur="4s" repeatCount="indefinite" />
-          </line>
-          <line x1="20%" y1="80%" x2="60%" y2="60%" stroke="url(#prologueGradient2)" strokeWidth="1" strokeDasharray="4,6">
-            <animate attributeName="stroke-dashoffset" values="0;10" dur="5s" repeatCount="indefinite" />
-          </line>
-          
-          <defs>
-            <linearGradient id="prologueGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgb(59, 130, 246)" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="rgb(147, 51, 234)" stopOpacity="0.1" />
-            </linearGradient>
-            <linearGradient id="prologueGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgb(236, 72, 153)" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="rgb(59, 130, 246)" stopOpacity="0.1" />
-            </linearGradient>
-          </defs>
-        </svg>
       </div>
 
       <div className="container relative z-10 mx-auto px-4 py-20 md:px-8">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <div className="chapter-badge mx-auto mb-6">
+          <div className="vault-badge mx-auto mb-6 bg-gradient-to-r from-yellow-400 to-orange-500">
             AI Evolution
           </div>
           
           <AnimatedTitle
             title="The AI J<b>o</b>urn<b>e</b>y"
-            containerClass="mb-8 !text-black"
+            containerClass="mb-8"
           />
           
-          <p className="max-w-2xl mx-auto text-lg font-circular-web text-gray-700 leading-relaxed">
+          <p className="max-w-2xl mx-auto text-lg font-circular-web text-blue-100/80 leading-relaxed">
             Every revolution has a beginning. Every breakthrough has an origin. 
             This is where your AI transformation starts.
           </p>
@@ -432,7 +377,7 @@ const Prologue = () => {
 
         {/* Call to Action */}
         <div className="text-center">
-          <div className="inline-flex flex-col items-center gap-6 rounded-2xl border border-purple-400/30 bg-gradient-to-br from-purple-900/20 to-black/50 p-8 backdrop-blur-sm">
+          <div className="inline-flex flex-col items-center gap-6 rounded-2xl border border-white/20 bg-gradient-to-r from-gray-900/50 to-black/50 p-8 backdrop-blur-sm">
             <h3 className="text-2xl font-zentry font-bold text-white">Ready to Begin Your AI Journey?</h3>
             <p className="max-w-md text-center font-circular-web text-blue-100/80">
               The prologue ends here, but your AI transformation is just beginning. 
@@ -440,7 +385,7 @@ const Prologue = () => {
             </p>
             
             <div className="flex flex-wrap gap-4 justify-center">
-              <button className="group flex items-center gap-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 font-general font-bold text-white transition-all duration-300 hover:from-purple-600 hover:to-pink-600 hover:scale-105">
+              <button className="group flex items-center gap-3 rounded-full bg-gradient-to-r from-yellow-300 to-orange-400 px-8 py-3 font-general font-bold text-black transition-all duration-300 hover:from-yellow-400 hover:to-orange-500 hover:scale-105">
                 <span>Enter the Platform</span>
                 <TiLocationArrow className="transition-transform duration-300 group-hover:translate-x-1" />
               </button>
