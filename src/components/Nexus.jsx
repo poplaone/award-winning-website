@@ -11,19 +11,21 @@ gsap.registerPlugin(ScrollTrigger);
 
 const GameCard = ({ title, description, video, badge, index }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
   const cardRef = useRef(null);
   const videoRef = useRef(null);
 
   useGSAP(() => {
     gsap.from(cardRef.current, {
-      y: 100,
+      scale: 0.8,
       opacity: 0,
-      duration: 1,
-      delay: index * 0.2,
-      ease: "power3.out",
+      rotationY: 45,
+      duration: 0.8,
+      delay: index * 0.1,
+      ease: "back.out(1.7)",
       scrollTrigger: {
         trigger: cardRef.current,
-        start: "top 80%",
+        start: "top 85%",
         toggleActions: "play none none reverse",
       },
     });
@@ -43,27 +45,49 @@ const GameCard = ({ title, description, video, badge, index }) => {
     }
   };
 
+  const handleCardClick = () => {
+    setIsSelected(!isSelected);
+    if (videoRef.current && !isSelected) {
+      videoRef.current.play();
+    }
+  };
+
+  // Rarity colors to match Vault component
+  const rarityColors = {
+    CV: "from-blue-400 to-cyan-500",
+    NLP: "from-purple-400 to-pink-500",
+    Analytics: "from-green-400 to-emerald-500",
+    AutoML: "from-yellow-400 to-orange-500",
+  };
+
   return (
-    <BentoTilt className="game-card group">
+    <BentoTilt className="vault-item group">
       <div
         ref={cardRef}
-        className="relative h-80 w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-purple-900/20 to-blue-900/20 backdrop-blur-sm transition-all duration-500 hover:border-yellow-300/30 hover:shadow-2xl hover:shadow-yellow-300/10"
+        className={`relative h-64 w-full cursor-pointer overflow-hidden rounded-xl border-2 transition-all duration-500 ${
+          isSelected 
+            ? 'border-yellow-400 shadow-lg shadow-yellow-400/30' 
+            : 'border-white/20 hover:border-white/40'
+        }`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={handleCardClick}
       >
         <video
           ref={videoRef}
           src={video}
           loop
           muted
-          className="absolute inset-0 h-full w-full object-cover opacity-30 transition-opacity duration-500 group-hover:opacity-50"
+          className="absolute inset-0 h-full w-full object-cover opacity-40"
         />
         
+        {/* Gradient Overlay */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${rarityColors[badge] || 'from-gray-400 to-gray-600'} opacity-20`} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
         
-        <div className="relative z-10 flex h-full flex-col justify-between p-6">
+        <div className="relative z-10 flex h-full flex-col justify-between p-4">
           <div className="flex items-start justify-between">
-            <div className="nexus-badge">
+            <div className={`vault-badge bg-gradient-to-r ${rarityColors[badge] || 'from-gray-400 to-gray-600'}`}>
               {badge}
             </div>
             <div className={`transition-transform duration-300 ${isHovered ? 'rotate-45' : ''}`}>
@@ -72,19 +96,36 @@ const GameCard = ({ title, description, video, badge, index }) => {
           </div>
           
           <div className="space-y-2">
-            <h3 className="text-2xl font-zentry font-bold text-white">{title}</h3>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-general uppercase tracking-wider text-white/60">
+                AI Model
+              </span>
+              <div className="h-1 flex-1 bg-gradient-to-r from-white/20 to-transparent rounded-full" />
+            </div>
+            
+            <h3 className="text-lg font-zentry font-bold text-white">{title}</h3>
+            
             <p className="text-sm font-circular-web text-blue-100/80 line-clamp-3">
               {description}
             </p>
             
-            <div className="flex items-center gap-2 pt-2">
-              <div className="h-1 w-8 bg-gradient-to-r from-yellow-300 to-purple-400 rounded-full" />
-              <span className="text-xs font-general uppercase tracking-wider text-yellow-300">
-                Active
+            <div className="flex items-center justify-between pt-1">
+              <span className="text-xs font-circular-web text-blue-100/80">
+                Enterprise
               </span>
+              {isSelected && (
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              )}
             </div>
           </div>
         </div>
+        
+        {/* Selection Border Animation */}
+        {isSelected && (
+          <div className="absolute inset-0 border-2 border-yellow-400 rounded-xl">
+            <div className="absolute inset-0 border border-yellow-400/50 rounded-xl animate-pulse" />
+          </div>
+        )}
       </div>
     </BentoTilt>
   );
@@ -123,10 +164,10 @@ const ConnectionNode = ({ x, y, delay = 0 }) => {
   return (
     <div
       ref={nodeRef}
-      className="absolute w-3 h-3 bg-yellow-300 rounded-full shadow-lg shadow-yellow-300/50"
+      className="absolute w-3 h-3 bg-yellow-400 rounded-full shadow-lg shadow-yellow-400/50"
       style={{ left: `${x}%`, top: `${y}%` }}
     >
-      <div className="absolute inset-0 bg-yellow-300 rounded-full animate-ping" />
+      <div className="absolute inset-0 bg-yellow-400 rounded-full animate-ping" />
     </div>
   );
 };
@@ -139,13 +180,13 @@ const Nexus = () => {
   useGSAP(() => {
     // Floating particles animation
     gsap.to(".floating-particle", {
-      y: "-=20",
-      x: "+=10",
-      rotation: 360,
-      duration: 6,
+      y: "-=30",
+      x: "random(-20, 20)",
+      rotation: "random(-180, 180)",
+      duration: 8,
       repeat: -1,
       yoyo: true,
-      stagger: 0.5,
+      stagger: 0.3,
       ease: "sine.inOut",
     });
 
@@ -196,31 +237,37 @@ const Nexus = () => {
     <section 
       id="nexus" 
       ref={sectionRef}
-      className="relative min-h-screen w-screen bg-gradient-to-br from-black via-purple-950/30 to-black overflow-hidden"
+      className="relative min-h-screen w-screen bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0">
         {/* Floating Particles */}
-        {Array.from({ length: 20 }).map((_, i) => (
+        {Array.from({ length: 15 }).map((_, i) => (
           <div
             key={i}
-            className="floating-particle absolute w-1 h-1 bg-purple-400/30 rounded-full"
+            className="floating-particle absolute w-2 h-2 bg-yellow-400/20 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
+              animationDelay: `${Math.random() * 8}s`,
             }}
           />
         ))}
         
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: `
+            linear-gradient(white 1px, transparent 1px),
+            linear-gradient(90deg, white 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }} />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 py-20 md:px-8">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <div className="nexus-badge mx-auto mb-6">
+          <div className="vault-badge mx-auto mb-6 bg-gradient-to-r from-yellow-400 to-orange-500">
             AI Model Hub
           </div>
           
@@ -235,40 +282,9 @@ const Nexus = () => {
           </p>
         </div>
 
-        {/* Network Visualization */}
-        <div className="nexus-network relative mb-20 h-40 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-purple-900/20 to-blue-900/20 backdrop-blur-sm">
-          <svg className="absolute inset-0 w-full h-full">
-            <line x1="10%" y1="50%" x2="30%" y2="20%" className="connection-line" stroke="url(#gradient1)" strokeWidth="2" />
-            <line x1="30%" y1="20%" x2="70%" y2="30%" className="connection-line" stroke="url(#gradient1)" strokeWidth="2" />
-            <line x1="70%" y1="30%" x2="90%" y2="60%" className="connection-line" stroke="url(#gradient1)" strokeWidth="2" />
-            <line x1="10%" y1="50%" x2="50%" y2="80%" className="connection-line" stroke="url(#gradient1)" strokeWidth="2" />
-            <line x1="50%" y1="80%" x2="90%" y2="60%" className="connection-line" stroke="url(#gradient1)" strokeWidth="2" />
-            
-            <defs>
-              <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#fcd34d" stopOpacity="0.3" />
-                <stop offset="50%" stopColor="#a855f7" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.3" />
-              </linearGradient>
-            </defs>
-          </svg>
-          
-          <ConnectionNode x={10} y={50} delay={0} />
-          <ConnectionNode x={30} y={20} delay={0.2} />
-          <ConnectionNode x={70} y={30} delay={0.4} />
-          <ConnectionNode x={90} y={60} delay={0.6} />
-          <ConnectionNode x={50} y={80} delay={0.8} />
-          
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <h3 className="text-xl font-zentry font-bold text-white mb-1">Live Network</h3>
-              <p className="text-sm font-general text-yellow-300">47,392 Active Models</p>
-            </div>
-          </div>
-        </div>
 
         {/* AI Model Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
           {aiModelCards.map((card, index) => (
             <GameCard key={index} {...card} index={index} />
           ))}
@@ -276,11 +292,21 @@ const Nexus = () => {
 
         {/* Call to Action */}
         <div className="text-center">
-          <div className="inline-flex items-center gap-4 rounded-full border border-yellow-300/30 bg-gradient-to-r from-yellow-300/10 to-purple-400/10 px-8 py-4 backdrop-blur-sm">
-            <span className="text-lg font-zentry font-bold text-white">Ready to Build?</span>
-            <div className="group flex items-center gap-2 rounded-full bg-yellow-300 px-6 py-2 transition-all duration-300 hover:bg-yellow-400 cursor-pointer">
-              <span className="text-sm font-general font-bold text-black uppercase tracking-wider">Enter Hub</span>
-              <TiLocationArrow className="text-black transition-transform duration-300 group-hover:translate-x-1" />
+          <div className="inline-flex items-center gap-6 rounded-2xl border border-white/20 bg-gradient-to-r from-gray-900/50 to-black/50 px-8 py-6 backdrop-blur-sm">
+            <div className="flex items-center gap-3">
+              <TiLocationArrow className="text-2xl text-yellow-300" />
+              <span className="text-lg font-zentry font-bold text-white">Access Models</span>
+            </div>
+            
+            <div className="h-6 w-px bg-white/20" />
+            
+            <div className="flex gap-3">
+              <button className="rounded-full bg-blue-500 px-6 py-2 font-general text-sm font-bold text-white transition-all duration-300 hover:bg-blue-600">
+                Deploy
+              </button>
+              <button className="rounded-full bg-gradient-to-r from-yellow-300 to-orange-400 px-6 py-2 font-general text-sm font-bold text-black transition-all duration-300 hover:from-yellow-400 hover:to-orange-500">
+                Explore
+              </button>
             </div>
           </div>
         </div>

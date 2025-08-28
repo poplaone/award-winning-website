@@ -152,11 +152,6 @@ const TimelineMarker = ({ index, isActive, total }) => {
         )}
       </div>
       
-      <div className={`absolute top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-general transition-all duration-300 ${
-        isActive ? 'text-purple-300 font-bold' : 'text-white/60'
-      }`}>
-        Chapter {index + 1}
-      </div>
     </div>
   );
 };
@@ -297,25 +292,87 @@ const Prologue = () => {
     <section 
       id="prologue" 
       ref={sectionRef}
-      className="relative min-h-screen w-screen bg-gradient-to-br from-black via-purple-950/20 to-black overflow-hidden"
+      className="relative min-h-screen w-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-hidden"
     >
-      {/* Animated Background */}
+      {/* Enhanced Background matching About section */}
       <div className="absolute inset-0">
-        {/* Floating Particles */}
-        {Array.from({ length: 25 }).map((_, i) => (
+        {/* Animated Gradient Overlay */}
+        <div className="about-gradient absolute inset-0 bg-gradient-radial from-blue-200/30 via-purple-200/20 to-transparent" />
+        
+        {/* Primary Floating Particles */}
+        {Array.from({ length: 35 }).map((_, i) => (
           <div
-            key={i}
-            className="prologue-particle absolute w-1 h-1 bg-purple-400/30 rounded-full"
+            key={`primary-${i}`}
+            className="prologue-particle absolute rounded-full"
             style={{
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              backgroundColor: i % 4 === 0 ? 'rgba(59, 130, 246, 0.3)' :
+                              i % 4 === 1 ? 'rgba(147, 51, 234, 0.3)' :
+                              i % 4 === 2 ? 'rgba(236, 72, 153, 0.3)' :
+                              'rgba(167, 243, 208, 0.3)',
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
+              animationDelay: `${Math.random() * 8}s`,
             }}
           />
         ))}
         
-        {/* Radial Gradient */}
-        <div className="absolute inset-0 bg-gradient-radial from-purple-900/10 via-transparent to-transparent" />
+        {/* Secondary Glow Particles */}
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div
+            key={`glow-${i}`}
+            className="about-gradient absolute rounded-full"
+            style={{
+              width: `${Math.random() * 200 + 100}px`,
+              height: `${Math.random() * 200 + 100}px`,
+              background: `radial-gradient(circle, ${
+                i % 3 === 0 ? 'rgba(59, 130, 246, 0.08)' :
+                i % 3 === 1 ? 'rgba(147, 51, 234, 0.08)' :
+                'rgba(236, 72, 153, 0.08)'
+              }, transparent 70%)`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 20}s`,
+              filter: 'blur(1px)',
+            }}
+          />
+        ))}
+        
+        {/* Geometric Patterns */}
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: `
+            radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.2) 2px, transparent 2px),
+            radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.2) 1px, transparent 1px),
+            linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(147, 51, 234, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '100px 100px, 80px 80px, 60px 60px, 60px 60px'
+        }} />
+        
+        {/* Dynamic Connection Lines */}
+        <svg className="absolute inset-0 w-full h-full opacity-10">
+          <line x1="10%" y1="10%" x2="30%" y2="40%" stroke="url(#prologueGradient1)" strokeWidth="1" strokeDasharray="5,5">
+            <animate attributeName="stroke-dashoffset" values="0;10" dur="3s" repeatCount="indefinite" />
+          </line>
+          <line x1="70%" y1="20%" x2="90%" y2="50%" stroke="url(#prologueGradient1)" strokeWidth="1" strokeDasharray="3,7">
+            <animate attributeName="stroke-dashoffset" values="10;0" dur="4s" repeatCount="indefinite" />
+          </line>
+          <line x1="20%" y1="80%" x2="60%" y2="60%" stroke="url(#prologueGradient2)" strokeWidth="1" strokeDasharray="4,6">
+            <animate attributeName="stroke-dashoffset" values="0;10" dur="5s" repeatCount="indefinite" />
+          </line>
+          
+          <defs>
+            <linearGradient id="prologueGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgb(59, 130, 246)" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="rgb(147, 51, 234)" stopOpacity="0.1" />
+            </linearGradient>
+            <linearGradient id="prologueGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgb(236, 72, 153)" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="rgb(59, 130, 246)" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
 
       <div className="container relative z-10 mx-auto px-4 py-20 md:px-8">
@@ -327,10 +384,10 @@ const Prologue = () => {
           
           <AnimatedTitle
             title="The AI J<b>o</b>urn<b>e</b>y"
-            containerClass="mb-8"
+            containerClass="mb-8 !text-black"
           />
           
-          <p className="max-w-2xl mx-auto text-lg font-circular-web text-blue-100/80 leading-relaxed">
+          <p className="max-w-2xl mx-auto text-lg font-circular-web text-gray-700 leading-relaxed">
             Every revolution has a beginning. Every breakthrough has an origin. 
             This is where your AI transformation starts.
           </p>
