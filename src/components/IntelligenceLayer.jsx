@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TiLocationArrow, TiCloud, TiFlowChildren, TiChartBar } from "react-icons/ti";
+import { TiLocationArrow, TiWeatherCloudy, TiFlowChildren, TiChartBar } from "react-icons/ti";
 
 import AnimatedTitle from "./AnimatedTitle";
 import { BentoTilt } from "./Features";
@@ -140,7 +140,7 @@ const IntelligenceLayer = () => {
     {
       title: "Cognitive Mesh",
       description: "Interconnected intelligence network that enables seamless knowledge transfer between specialized AI systems.",
-      icon: <TiCloud />,
+      icon: <TiWeatherCloudy />,
     },
     {
       title: "Predictive Intelligence",
